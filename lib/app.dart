@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'core/theme/app_theme.dart';
-import 'core/constants/app_text_styles.dart';
+import 'features/tickets/presentation/screens/dashboard_screen.dart';
 
 class HelpDeskApp extends StatelessWidget {
   const HelpDeskApp({super.key});
@@ -18,23 +18,9 @@ class HelpDeskApp extends StatelessWidget {
           title: 'PPS HelpDesk',
           theme: AppTheme.lightTheme,
           debugShowCheckedModeBanner: false,
-          home: const _DashboardPlaceholder(),
+          home: const DashboardScreen(),
         );
       },
-    );
-  }
-}
-
-class _DashboardPlaceholder extends StatelessWidget {
-  const _DashboardPlaceholder();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('PPS HelpDesk')),
-      body: Center(
-        child: Text('Tickets Dashboard', style: AppTextStyles.heading1),
-      ),
     );
   }
 }
