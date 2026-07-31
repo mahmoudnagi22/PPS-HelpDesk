@@ -1,4 +1,4 @@
-package com.example.pps_helpe_desk
+package com.pps.helpdesk
 
 import io.flutter.embedding.android.FlutterActivity
 
