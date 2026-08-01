@@ -11,6 +11,7 @@ import '../widgets/ticket_card.dart';
 import '../widgets/ticket_filter_bar.dart';
 import '../widgets/ticket_search_bar.dart';
 import 'create_ticket_screen.dart';
+import 'ticket_details_screen.dart';
 
 class TicketListScreen extends StatelessWidget {
   const TicketListScreen({super.key});
@@ -54,7 +55,21 @@ class _TicketListView extends StatelessWidget {
                       itemCount: state.visibleTickets.length,
                       itemBuilder: (context, index) {
                         final ticket = state.visibleTickets[index];
-                        return TicketCard(ticket: ticket, onTap: () {});
+                        return TicketCard(
+                          ticket: ticket,
+                          onTap: () async {
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) =>
+                                    TicketDetailsScreen(ticket: ticket),
+                              ),
+                            );
+                            if (context.mounted) {
+                              context.read<TicketCubit>().loadTickets();
+                            }
+                          },
+                        );
                       },
                     ),
                   };
