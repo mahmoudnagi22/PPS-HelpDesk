@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/constants/app_colors.dart';
-import '../../../../core/constants/app_text_styles.dart';
-import '../../../../core/constants/enums.dart';
+import '../../../../../core/constants/app_colors.dart';
+import '../../../../../core/constants/app_text_styles.dart';
+import '../../../../../core/constants/enums.dart';
 
 class PriorityBadge extends StatelessWidget {
   const PriorityBadge({super.key, required this.priority});

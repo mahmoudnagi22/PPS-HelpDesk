@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/services/service_locator.dart';
-import '../../../../core/widgets/empty_state.dart';
-import '../../../../core/widgets/loading_indicator.dart';
-import '../cubit/ticket_cubit.dart';
-import '../cubit/ticket_state.dart';
+import '../../../../../core/services/service_locator.dart';
+import '../../../../../core/widgets/empty_state.dart';
+import '../../../../../core/widgets/loading_indicator.dart';
+import '../../cubit/ticket_cubit.dart';
+import '../../cubit/ticket_state.dart';
+import '../../create/screens/create_ticket_screen.dart';
+import '../../details/screens/ticket_details_screen.dart';
 import '../widgets/ticket_card.dart';
 import '../widgets/ticket_filter_bar.dart';
 import '../widgets/ticket_search_bar.dart';
-import 'create_ticket_screen.dart';
-import 'ticket_details_screen.dart';
 
 class TicketListScreen extends StatelessWidget {
   const TicketListScreen({super.key});
