@@ -16,6 +16,7 @@ import '../widgets/priority_badge.dart';
 import '../widgets/status_chip.dart';
 import '../widgets/ticket_summary_card.dart';
 import 'create_ticket_screen.dart';
+import 'ticket_details_screen.dart';
 import 'ticket_list_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -179,32 +180,44 @@ class _RecentTicketTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(bottom: 10.h),
-      padding: EdgeInsets.all(12.w),
-      decoration: BoxDecoration(
-        color: AppColors.surface,
-        borderRadius: BorderRadius.circular(10.r),
-        border: Border.all(color: AppColors.textSecondary.withValues(alpha: 0.15)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(ticket.subject, style: AppTextStyles.body),
-          SizedBox(height: 6.h),
-          Row(
-            children: [
-              StatusChip(status: ticket.status),
-              SizedBox(width: 8.w),
-              PriorityBadge(priority: ticket.priority),
-              const Spacer(),
-              Text(
-                DateFormatter.toReadableDate(ticket.createdAt),
-                style: AppTextStyles.caption,
-              ),
-            ],
-          ),
-        ],
+    return InkWell(
+      borderRadius: BorderRadius.circular(10.r),
+      onTap: () async {
+        await Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => TicketDetailsScreen(ticket: ticket)),
+        );
+        if (context.mounted) {
+          context.read<TicketCubit>().loadTickets();
+        }
+      },
+      child: Container(
+        margin: EdgeInsets.only(bottom: 10.h),
+        padding: EdgeInsets.all(12.w),
+        decoration: BoxDecoration(
+          color: AppColors.surface,
+          borderRadius: BorderRadius.circular(10.r),
+          border: Border.all(color: AppColors.textSecondary.withValues(alpha: 0.15)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(ticket.subject, style: AppTextStyles.body),
+            SizedBox(height: 6.h),
+            Row(
+              children: [
+                StatusChip(status: ticket.status),
+                SizedBox(width: 8.w),
+                PriorityBadge(priority: ticket.priority),
+                const Spacer(),
+                Text(
+                  DateFormatter.toReadableDate(ticket.createdAt),
+                  style: AppTextStyles.caption,
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
