@@ -13,6 +13,8 @@ class AppTextField extends StatelessWidget {
     this.maxLines = 1,
     this.validator,
     this.keyboardType,
+    this.onChanged,
+    this.prefixIcon,
   });
 
   final TextEditingController? controller;
@@ -22,6 +24,8 @@ class AppTextField extends StatelessWidget {
   final int maxLines;
   final String? Function(String?)? validator;
   final TextInputType? keyboardType;
+  final ValueChanged<String>? onChanged;
+  final Widget? prefixIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -31,9 +35,11 @@ class AppTextField extends StatelessWidget {
       maxLines: maxLines,
       validator: validator,
       keyboardType: keyboardType,
+      onChanged: onChanged,
       decoration: InputDecoration(
         labelText: labelText,
         hintText: hintText,
+        prefixIcon: prefixIcon,
         filled: true,
         fillColor: AppColors.surface,
         border: OutlineInputBorder(
