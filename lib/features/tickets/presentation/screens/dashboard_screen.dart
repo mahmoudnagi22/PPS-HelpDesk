@@ -15,6 +15,7 @@ import '../cubit/ticket_state.dart';
 import '../widgets/priority_badge.dart';
 import '../widgets/status_chip.dart';
 import '../widgets/ticket_summary_card.dart';
+import 'create_ticket_screen.dart';
 import 'ticket_list_screen.dart';
 
 class DashboardScreen extends StatelessWidget {
@@ -48,6 +49,18 @@ class _DashboardView extends StatelessWidget {
           };
         },
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          await Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const CreateTicketScreen()),
+          );
+          if (context.mounted) {
+            context.read<TicketCubit>().loadTickets();
+          }
+        },
+        child: const Icon(Icons.add),
+      ),
     );
   }
 }
@@ -74,10 +87,17 @@ class _DashboardContent extends StatelessWidget {
             children: [
               Text('Recent Tickets', style: AppTextStyles.heading2),
               TextButton(
-                onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (_) => const TicketListScreen()),
-                ),
+                onPressed: () async {
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const TicketListScreen(),
+                    ),
+                  );
+                  if (context.mounted) {
+                    context.read<TicketCubit>().loadTickets();
+                  }
+                },
                 child: const Text('View All'),
               ),
             ],

@@ -10,6 +10,7 @@ import '../cubit/ticket_state.dart';
 import '../widgets/ticket_card.dart';
 import '../widgets/ticket_filter_bar.dart';
 import '../widgets/ticket_search_bar.dart';
+import 'create_ticket_screen.dart';
 
 class TicketListScreen extends StatelessWidget {
   const TicketListScreen({super.key});
@@ -64,7 +65,15 @@ class _TicketListView extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () async {
+          await Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const CreateTicketScreen()),
+          );
+          if (context.mounted) {
+            context.read<TicketCubit>().loadTickets();
+          }
+        },
         child: const Icon(Icons.add),
       ),
     );
