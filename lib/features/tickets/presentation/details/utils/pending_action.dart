@@ -1,0 +1,1 @@
+enum PendingAction { save, delete }
